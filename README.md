@@ -4,71 +4,212 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SKY REACH MARKETING</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Font Family Updated to Poppins */
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: #f5f5f5; }
-        
-        header { background: #003366; color: white; padding: 20px; text-align: center; font-size: 28px; font-weight: 700; }
-        nav { background: white; padding: 10px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: flex; justify-content: center; gap: 25px; }
-        nav a { text-decoration: none; color: #003366; font-size: 18px; transition: color 0.3s; }
-        nav a:hover { color: #ff6600; /* Hover Effect Added */ }
+        /* BASE STYLES & PREMIUM COLOR PALETTE */
+        :root {
+            --primary-color: #003366; /* Deep Navy Blue */
+            --secondary-color: #ff6600; /* Bright Orange for accents */
+            --background-light: #f5f8fb;
+            --background-dark: #e0e6ed;
+            --card-shadow: 0 8px 25px rgba(0, 51, 102, 0.1); /* Subtle Blue Shadow */
+        }
 
-        /* Hero Image Updated */
+        body { 
+            margin: 0; 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--background-light); 
+            opacity: 0; /* Initial opacity for fade-in effect */
+            transition: opacity 1.5s ease;
+        }
+
+        /* HEADER & NAVIGATION */
+        header { 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 25px; 
+            text-align: center; 
+            font-size: 32px; 
+            font-weight: 700; 
+        }
+
+        nav { 
+            background: white; 
+            padding: 15px 20px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+        }
+        nav a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            font-size: 17px; 
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s; 
+        }
+        nav a:hover { color: var(--secondary-color); border-bottom: 2px solid var(--secondary-color); }
+
+        /* HERO SECTION */
         .hero { 
-            background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; 
-            height: 350px; 
+            background: url('https://picsum.photos/seed/digitalmarketing/1400/350') center/cover no-repeat; 
+            height: 400px; /* Taller Hero */
             display: flex; 
             align-items: center; 
             justify-content: center; 
             color: white; 
-            font-size: 36px; /* Slightly larger text */
+            font-size: 44px; 
             font-weight: 700; 
-            text-shadow: 1px 1px 6px black; 
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.8); 
             padding: 0 20px;
             text-align: center;
         }
 
-        .section { padding: 50px 20px; text-align: center; }
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Card size increased */ gap: 20px; margin-top: 30px; }
+        /* GENERAL SECTION STYLING */
+        .section { 
+            padding: 60px 20px; 
+            text-align: center; 
+            transition: opacity 0.8s, transform 0.8s; /* Animation properties */
+            opacity: 0; 
+            transform: translateY(30px);
+        }
+        .section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        h2::after { /* Underline for heading */
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* SERVICES GRID */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
         
         .card { 
             background: white; 
-            padding: 25px; /* Padding increased */
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Shadow improved */
-            transition: transform 0.3s; /* Hover Effect Added */
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: var(--card-shadow); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            border-top: 5px solid transparent; 
         }
-        .card:hover { transform: translateY(-5px); }
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 30px rgba(0, 51, 102, 0.2); 
+            border-top-color: var(--secondary-color); /* Premium accent on hover */
+        }
         
-        /* Service Card Images Updated */
-        .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        .card h3 { color: var(--primary-color); font-weight: 600; }
+
+        /* OTHER SECTIONS */
+        .about, .pricing, .testimonials, .portfolio, .contact-form { 
+            background: white; 
+            margin: 40px auto; 
+            max-width: 1000px; 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: var(--card-shadow); 
+            text-align: left;
+        }
         
-        .about, .pricing, .testimonials, .portfolio, .contact-form { background: white; margin: 40px auto; max-width: 900px; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .portfolio img { 
+            width: 100%; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            margin-top: 20px; 
+        }
 
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .price-card { background: #eef2ff; padding: 25px; border-radius: 12px; border: 2px solid #003366; }
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .price-card { 
+            background: var(--background-dark); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 3px solid var(--primary-color); 
+            text-align: center;
+        }
+        .price-card h3 { color: var(--primary-color); font-size: 24px; margin-top: 0; }
 
-        .testimonial-card { background: #fff3cd; padding: 25px; border-radius: 12px; margin-bottom: 15px; text-align: left; border-left: 5px solid #ffc107; }
+        /* TESTIMONIALS */
+        .testimonial-card { 
+            background: #e6f7ff; /* Light Blue Background */
+            color: #333;
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            text-align: left; 
+            border-left: 6px solid var(--secondary-color); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-style: italic;
+        }
 
-        form input, form textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        form button { background: #003366; color: white; padding: 14px 25px; border: none; margin-top: 20px; border-radius: 8px; font-size: 18px; cursor: pointer; transition: background 0.3s; }
-        form button:hover { background: #0056b3; }
+        /* CONTACT FORM */
+        form input, form textarea { 
+            width: 100%; 
+            padding: 15px; 
+            margin-top: 15px; 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif;
+        }
+        form textarea { resize: vertical; }
 
-        footer { margin-top: 60px; background: #003366; color: white; padding: 30px; text-align: center; }
+        form button { 
+            background: var(--secondary-color); 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            margin-top: 25px; 
+            border-radius: 10px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            font-weight: 600;
+            transition: background 0.3s; 
+        }
+        form button:hover { background: #e05c00; }
 
+        /* FOOTER */
+        footer { margin-top: 60px; background: var(--primary-color); color: white; padding: 35px; text-align: center; }
+
+        /* WHATSAPP FLOAT */
         .whatsapp-floating { 
             position: fixed; 
-            bottom: 25px; 
-            right: 25px; 
+            bottom: 30px; 
+            right: 30px; 
             background: #25d366; 
             color: white; 
-            padding: 15px 20px; 
+            padding: 18px 23px; /* Slightly larger button */
             border-radius: 50%; 
             text-decoration: none; 
-            font-size: 24px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            font-size: 26px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             z-index: 1000;
+        }
+
+        /* KEYFRAMES FOR ANIMATION */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -88,24 +229,24 @@
     <div class="section" id="services">
         <h2>Our Services</h2>
         <div class="services">
-            <div class="card"><img src="https://images.unsplash.com/photo-1543286386-713fea52c3c4?fit=crop&w=300&h=200&q=80" alt="Facebook Ads"/><h3>Facebook Ads</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1611944212959-b1d551e1837d?fit=crop&w=300&h=200&q=80" alt="Instagram Ads"/><h3>Instagram Ads</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1580971556396-857c3d1f04fd?fit=crop&w=300&h=200&q=80" alt="TikTok Ads"/><h3>TikTok Ads</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1557827885-e6533036e76d?fit=crop&w=300&h=200&q=80" alt="Gmail Marketing"/><h3>Gmail Marketing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1606132410317-5e921d22228b?fit=crop&w=300&h=200&q=80" alt="Graphic Designing"/><h3>Graphic Designing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1522030612170-466d3326177b?fit=crop&w=300&h=200&q=80" alt="Video Editing"/><h3>Video Editing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1549692520-222a101f3536?fit=crop&w=300&h=200&q=80" alt="Website Designing"/><h3>Website Designing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1551608779-8b83286b62d3?fit=crop&w=300&h=200&q=80" alt="SEO Services"/><h3>SEO Services</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1588661726007-88544c8c7f8a?fit=crop&w=300&h=200&q=80" alt="Facebook Page Management"/><h3>Facebook Page Management</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1627964408930-bc5db0844781?fit=crop&w=300&h=200&q=80" alt="Instagram Account Management"/><h3>Instagram Account Management</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1616782531998-051f67f0412e?fit=crop&w=300&h=200&q=80" alt="TikTok Account Management"/><h3>TikTok Account Management</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?fit=crop&w=300&h=200&q=80" alt="Daily Posting"/><h3>Daily Posting</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1587560418386-8a964a27f677?fit=crop&w=300&h=200&q=80" alt="Comments & Messages Handling"/><h3>Comments & Messages Handling</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1550534246-8178122d6454?fit=crop&w=300&h=200&q=80" alt="Thumbnail Design"/><h3>Thumbnail Design</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1528641977938-e66699d7a224?fit=crop&w=300&h=200&q=80" alt="Short Videos"/><h3>Short Videos</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1609869584485-f551b9e0787d?fit=crop&w=300&h=200&q=80" alt="YouTube Video Editing"/><h3>YouTube Video Editing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1563729781615-562e8310c855?fit=crop&w=300&h=200&q=80" alt="Logo Designing"/><h3>Logo Designing</h3></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1581093581728-6e696f8c772c?fit=crop&w=300&h=200&q=80" alt="Business Card Designing"/><h3>Business Card Designing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/facebookads/300/200" alt="Facebook Ads"/><h3>Facebook Ads</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/instagramads/300/200" alt="Instagram Ads"/><h3>Instagram Ads</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/tiktokads/300/200" alt="TikTok Ads"/><h3>TikTok Ads</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/gmailmarketing/300/200" alt="Gmail Marketing"/><h3>Gmail Marketing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/graphicdesign/300/200" alt="Graphic Designing"/><h3>Graphic Designing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/videoediting/300/200" alt="Video Editing"/><h3>Video Editing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/websitedesign/300/200" alt="Website Designing"/><h3>Website Designing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/seoservices/300/200" alt="SEO Services"/><h3>SEO Services</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/pagemanagement/300/200" alt="Facebook Page Management"/><h3>Facebook Page Management</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/accountmanagement/300/200" alt="Instagram Account Management"/><h3>Instagram Account Management</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/tiktokmanagement/300/200" alt="TikTok Account Management"/><h3>TikTok Account Management</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/dailyposting/300/200" alt="Daily Posting"/><h3>Daily Posting</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/comments/300/200" alt="Comments & Messages Handling"/><h3>Comments & Messages Handling</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/thumbnaildesign/300/200" alt="Thumbnail Design"/><h3>Thumbnail Design</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/shortvideos/300/200" alt="Short Videos"/><h3>Short Videos</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/youtubeedit/300/200" alt="YouTube Video Editing"/><h3>YouTube Video Editing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/logodesign/300/200" alt="Logo Designing"/><h3>Logo Designing</h3></div>
+            <div class="card"><img src="https://picsum.photos/seed/businesscard/300/200" alt="Business Card Designing"/><h3>Business Card Designing</h3></div>
         </div>
     </div>
 
@@ -117,7 +258,7 @@
     <div class="section portfolio" id="portfolio">
         <h2>Portfolio</h2>
         <p>Our recent work and client results. We believe in transparency and measurable results.</p>
-        <img src="https://images.unsplash.com/photo-1507207611509-ec012433ff52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" style="width:100%; border-radius:12px;" alt="Digital Marketing Portfolio Showcase"/>
+        <img src="https://picsum.photos/seed/portfolio/900/300" style="width:100%; border-radius:15px;" alt="Digital Marketing Portfolio Showcase"/>
     </div>
 
     <div class="section testimonials">
@@ -159,5 +300,34 @@
     </footer>
 
     <a href="https://wa.me/923175181014" class="whatsapp-floating">💬</a>
+
+    <script>
+        // 1. Initial Fade-In Animation for the whole body
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.body.style.opacity = '1';
+        });
+
+        // 2. Scroll Reveal Animation for sections
+        const sections = document.querySelectorAll('.section');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.1, // Element is visible 10%
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
